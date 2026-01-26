@@ -1,4 +1,6 @@
 #include"Engine.h"
+#include"Level/Level.h"
+
 #include<iostream>
 #include<Windows.h>
 
@@ -10,6 +12,12 @@ namespace Mint
 
 	Engine::~Engine()
 	{
+		// 메인 레벨을 제거한다
+		if (mainLevel)
+		{
+			delete mainLevel;
+			mainLevel = nullptr;
+		}
 	}
 
 	void Engine::Run()
@@ -55,8 +63,10 @@ namespace Mint
 
 				// 프레임 처리 !!
 				// Tick(1.0f / 60.0f);
+				BeginPlay();
 				Tick(deltaTime);
 				Draw();
+
 				// 이전 시간 값 갱신하기
 				previousTime = currentTime;
 
@@ -65,7 +75,7 @@ namespace Mint
 				// (중요)운영체제가 제공하는 기능을 사용할 수 밖에 없다 !!
 				for (int ix = 0; ix < 255; ++ix)
 				{
-					keyStates[ix].isKeyDown
+					keyStates[ix].wasKeyDown
 						= keyStates[ix].isKeyDown;
 				}
 			}
@@ -96,6 +106,22 @@ namespace Mint
 		return keyStates[keyCode].isKeyDown;
 	}
 
+	void Engine::SetNewLevel(Level* newLevel)
+	{
+		// 기존의 Level이 있는지 확인한다
+		// 있으면 기존의 Level을 제거한다
+		// 원래는 전환시 바로 전환하면 안된다
+		// TODO : 임시코드
+		if (mainLevel)
+		{
+			delete mainLevel;
+			mainLevel = nullptr;
+		}
+
+		// 레벨 설정
+		mainLevel = newLevel;
+	}
+
 	void Engine::ProcessInput()
 	{
 		// 키 마다 입력을 읽는다
@@ -106,19 +132,47 @@ namespace Mint
 				= GetAsyncKeyState(ix) & 0x8000 > 0 ? true : false;
 		}
 	}
+	void Engine::BeginPlay()
+	{
+		// Level이 존재한다면 이벤트를 전달
+		if (!mainLevel)
+		{
+			std::cout << "mainLevel is empty.\n";
+			return;
+		}
+
+		mainLevel->BeginPlay();
+	}
 	void Engine::Tick(float deltaTime)
 	{
-		std::cout
-			<< "DeltaTime: " << deltaTime
-			<< ", FPS: " << (1.0f / deltaTime) << "\n";
-
+		// std::cout
+		// 	<< "DeltaTime: " << deltaTime
+		// 	<< ", FPS: " << (1.0f / deltaTime) << "\n";
+		// 
 		// ESC키를 누르면 종료한다
 		if (GetKeyDown(VK_ESCAPE))
 		{
 			QuitEngine();
 		}
+
+		// Level에 Event 보내기
+		// 예외처리임
+		if (!mainLevel)
+		{
+			std::cout << "Error: Engine::Tick(). mainLevel is empty\n";
+			return;
+		}
+
+		mainLevel->Tick(deltaTime);
 	}
 	void Engine::Draw()
 	{
+		if (!mainLevel)
+		{
+			std::cout << "Error: Engine::Draw(). mainLevel is empty\n";
+			return;
+		}
+
+		mainLevel->Draw();
 	}
 }

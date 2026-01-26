@@ -37,9 +37,16 @@ namespace Mint
 		// 현재 눌려있으면 반복적으로 호출한다
 		bool GetKey(int keyCode);
 
+		// 새 레벨을 추가(설정)하는 함수
+		void SetNewLevel(class Level* newLevel);
+
 	private:
 		// 입력 처리 함수
 		void ProcessInput();
+
+		// 게임 플레이 시작함수
+		// Unreal에서는 BeginPlay, Unity에서는 Start/Awake 이다.
+		void BeginPlay();
 
 		// 업데이트 함수.
 		void Tick(float deltaTime);
@@ -52,6 +59,9 @@ namespace Mint
 
 		// 키 상태 저장용 배열
 		KeyState keyStates[255] = { };
+
+		// 메인 레벨
+		class Level* mainLevel = nullptr;
 	};
 }
 
