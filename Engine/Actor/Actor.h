@@ -1,8 +1,10 @@
 #pragma once
 
+#include"common/Common.h"
+
 namespace Mint
 {
-	class Actor
+	class MINT_API Actor
 	{
 	public:
 		Actor();

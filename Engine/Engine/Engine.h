@@ -1,23 +1,17 @@
 #pragma once
 
+#include"common/Common.h"
 namespace Mint
 {
-	// Main game engine class.
-	class Engine
-	{
-		// 데이터
-		// down(누르기), up(떼기), hold(유지)
-		struct KeyState
-		{
-			// 현재 키가 눌렸는가?
-			bool isKeyDown = false;
+	// 전방 선언!!
+	class Input;
 
-			// 이전에 키가 눌렸었는가?
-			bool wasKeyDown = false;
-		};
+	// Main game engine class.
+	class MINT_API Engine
+	{
+		
 
 	public:
-
 		Engine();
 		~Engine();
 
@@ -27,23 +21,15 @@ namespace Mint
 		// 엔진 종료 함수
 		void QuitEngine();
 
-		// 입력을 확인하는 함수들
-		// 이전에 입력이 안됐지만 현재 입력이 됐으면 한 번 호출한다
-		bool GetKeyDown(int keyCode);
-
-		// 이전에 입력이 됐었지만 현재 입력이 취소됐으면 한 번 호출한다
-		bool GetKeyUp(int keyCode);
-
-		// 현재 눌려있으면 반복적으로 호출한다
-		bool GetKey(int keyCode);
+		
 
 		// 새 레벨을 추가(설정)하는 함수
 		void SetNewLevel(class Level* newLevel);
 
-	private:
-		// 입력 처리 함수
-		void ProcessInput();
+		// 전역변수 접근 함수
+		static Engine& Get();
 
+	private:
 		// 게임 플레이 시작함수
 		// Unreal에서는 BeginPlay, Unity에서는 Start/Awake 이다.
 		void BeginPlay();
@@ -57,11 +43,14 @@ namespace Mint
 		// 엔진 종료 플래그
 		bool isQuit = false;
 
-		// 키 상태 저장용 배열
-		KeyState keyStates[255] = { };
+		// 입력 관리자
+		Input* input = nullptr;
 
 		// 메인 레벨
 		class Level* mainLevel = nullptr;
+
+		// 전역 변수
+		static Engine* instance;
 	};
 }
 
