@@ -1,0 +1,13 @@
+Actor 클래스
+- Actor 클래스는 Level1차txt에서 설명했듯, Level에서 활동하는 개체이다.
+- 이는 Level이 Actor의 생명주기를 관리함을 의미
+- 따라서 Actor 클래스는 기본적으로 Level 클래스가 가진 BeginPlay(), Tick(float deltaTime), Draw()를 가진다
+
+- 여러 활성화 여부를 판단하는 boolean 형 변수들이 추가된다.
+- hasBeganPlay, isActive, destroyRequested.
+
+Actor 클래스의 BeginPlay 함수
+- 초기값이 false로 설정된 hasBeganPlay 변수를 true로 전환한다
+
+Actor 클래스를 상속받는 TestActor 클래스의 생성
+- 인스턴스화할 TestActor를 클래스를 생성하여 Actor 클래스의 함수를 재정의한다

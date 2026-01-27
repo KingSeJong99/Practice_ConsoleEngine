@@ -426,3 +426,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/Engine/Level/Level1차.txt
+/Engine/Actor/Actor1차.txt

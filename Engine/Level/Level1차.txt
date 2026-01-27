@@ -1,0 +1,23 @@
+Level 클래스의 개요
+- Level 클래스는 해당 Level(Scene)에 있는 모든 Actor(Object)을 관리하는 역할을 수행한다
+
+Level 클래스의 소멸자
+- 따라서 Level 클래스는 퇴장시, 해당 Level에 속한 모든 객체(Actor)들의 메모리를 해제할 것이다.
+- 이때, actor는 vector에 저장되어 있기 때문에 배열의 초기화를 actors.clear()를 통해 수행한다.
+
+BeginPlay 함수
+- 해당 함수는 배열에 저장되어 있는 actor들에게 BeginPlay를 실행하도록 한다. 이때, Actor 클래스는
+\n Level 클래스의 안에서 활동하므로 만약 actor 객체가 가진 HasBeganPlay의 값에 따라 해당 회의 반복은
+\n 스킵(continue) 될 수 있다.
+
+Tick, Draw 함수
+- BeginPlay 함수와 같은 맥락이나 아직 구현이 되지 않아 아직 알 수 없다.
+
+AddNewActor 함수
+- Level 클래스에서 Actor 객체들을 배열로 다루는데, 이때 Actor들을 vector에 저장한다
+- 역할이 무엇인지 다시 알아내기
+- emplace_back과 push_back에 대해 알아보기, 
+
+
+
+

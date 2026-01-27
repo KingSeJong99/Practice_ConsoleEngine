@@ -1,0 +1,14 @@
+Engine 클래스
+- Engine 클래스는 컨트롤러의 역할로서 새로 추가한 Level, Actor를 추가한다.
+
+Engine 클래스의 BeginPlay 함수
+- mainLevel (Level이 있는지 검사하는 변수)의 유무에 따라 Beginplay를 실행한다
+
+Beginplay라는 이름에 대해
+- Beginplay는 Unreal 엔진에서 다루는 게임 플레이 시작 함수이다.
+- Unity 엔진에서는 Start 혹은 Awake라는 이름으로 불리고 있다.
+
+Engine 클래스의 소멸자
+- BeginPlay 함수를 선언하며 생성한 mainLevel 변수의 값을 통해 만약 NULL 상태가 아니라면
+\n 값을 초기화하고 메모리를 해제한다
+
