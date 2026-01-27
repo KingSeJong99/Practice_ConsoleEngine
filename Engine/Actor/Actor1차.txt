@@ -1,13 +1,16 @@
-Actor Ŭ����
-- Actor Ŭ������ Level1��txt���� �����ߵ�, Level���� Ȱ���ϴ� ��ü�̴�.
-- �̴� Level�� Actor�� �����ֱ⸦ �������� �ǹ�
-- ���� Actor Ŭ������ �⺻������ Level Ŭ������ ���� BeginPlay(), Tick(float deltaTime), Draw()�� ������
+Actor 클래스
+- Actor 클래스는 Level1차txt에서 설명했듯, Level에서 활동하는 개체이다.
+- 호출 순서를 명확히 알아야 한다. Level이 루프를 돌면서 자신이 소유한 Actor들의 BeginPlay, Tick, Draw를 대신 호출(Dispatch)해주는 구조인 것이다.
+- 이는 Level이 Actor의 생명주기를 관리함을 의미
+- 따라서 Actor 클래스는 기본적으로 Level 클래스가 가진 BeginPlay(), Tick(float deltaTime), Draw()를 가진다
 
-- ���� Ȱ��ȭ ���θ� �Ǵ��ϴ� boolean �� �������� �߰��ȴ�.
-- hasBeganPlay, isActive, destroyRequested.
+- 여러 활성화 여부를 판단하는 boolean 형 변수들이 추가된다.
+-> hasBeganPlay : 중복 초기화 방지용으로서 생성되자마자 실행될지, 나중에 실행될지를 제어한다
+-> isActive : 업데이트(Tick)와 렌더링(Draw)을 일시 정지할지 결정하는 스위치이다
+-> destroyRequested : '지연 삭제'용도. Tick 도중에 메모리에서 바로 지워버리면 참조 에러로 엔진이 터질 수 있기 때문에 "이 녀석을 다음 프레임에 지워줘"라고 마킹하는 용도이다
 
-Actor Ŭ������ BeginPlay �Լ�
-- �ʱⰪ�� false�� ������ hasBeganPlay ������ true�� ��ȯ�Ѵ�
+Actor 클래스의 BeginPlay 함수
+- 초기값이 false로 설정된 hasBeganPlay 변수를 true로 전환한다
 
-Actor Ŭ������ ��ӹ޴� TestActor Ŭ������ ����
-- �ν��Ͻ�ȭ�� TestActor�� Ŭ������ �����Ͽ� Actor Ŭ������ �Լ��� �������Ѵ�
+Actor 클래스를 상속받는 TestActor 클래스의 생성
+- 인스턴스화할 TestActor를 클래스를 생성하여 Actor 클래스의 함수를 재정의한다

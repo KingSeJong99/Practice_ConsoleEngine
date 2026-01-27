@@ -1,19 +1,21 @@
-Level Ŭ������ ����
-- Level Ŭ������ �ش� Level(Scene)�� �ִ� ��� Actor(Object)�� �����ϴ� ������ �����Ѵ�
+Level 클래스의 개요
+- Level 클래스는 해당 Level(Scene)에 있는 모든 Actor(Object)을 관리하는 역할을 수행한다
 
-Level Ŭ������ �Ҹ���
-- ���� Level Ŭ������ �����, �ش� Level�� ���� ��� ��ü(Actor)���� �޸𸮸� ������ ���̴�.
-- �̶�, actor�� vector�� ����Ǿ� �ֱ� ������ �迭�� �ʱ�ȭ�� actors.clear()�� ���� �����Ѵ�.
+Level 클래스의 소멸자
+- 따라서 Level 클래스는 퇴장시, 해당 Level에 속한 모든 객체(Actor)들의 메모리를 해제할 것이다
+- 이때, actor는 vector에 저장되어 있기 때문에 배열을 actors.clear()를 통해 비운다
 
-BeginPlay �Լ�
-- �ش� �Լ��� �迭�� ����Ǿ� �ִ� actor�鿡�� BeginPlay�� �����ϵ��� �Ѵ�. �̶�, Actor Ŭ������
-\n Level Ŭ������ �ȿ��� Ȱ���ϹǷ� ���� actor ��ü�� ���� HasBeganPlay�� ���� ���� �ش� ȸ�� �ݺ���
-\n ��ŵ(continue) �� �� �ִ�.
+BeginPlay 함수
+- 해당 함수는 배열에 저장되어 있는 actor들에게 BeginPlay를 실행하도록 한다. 이때, Actor 클래스는 Level 클래스의 안에서 활동하므로 만약 actor 객체가 가진 HasBeganPlay의 값에 따라 중복 실행을 방지한다
 
-Tick, Draw �Լ�
-- BeginPlay �Լ��� ���� �ƶ��̳� ���� ������ ���� �ʾ� ���� �� �� ����.
+Tick, Draw 함수
+- Tick은 매 프레임마다 액터들의 로직(위치 계산이나 AI 등)을 갱신하는 역할을
+- Draw는 매 프레임마다 액터들을 화면에 그리는 역할을 한다
+즉, Level이 Tick을 호출하면 그 안에 있는 모든 Actor가 동시에 움직이는 것처럼 보이게 된다!
 
-AddNewActor �Լ�
-- Level Ŭ�������� Actor ��ü���� �迭�� �ٷ�µ�, �̶� Actor���� vector�� �����Ѵ�
-- ������ �������� �ٽ� �˾Ƴ���
-- emplace_back�� push_back�� ���� �˾ƺ���, 
+AddNewActor 함수
+- Level 클래스에서 Actor 객체들을 배열로 다루는데, 이때 Actor들을 vector에 저장한다
+
+emplace_back VS push_back
+- emplace_back은 바구니 안에서 직접 객체를 생성하고, push_back은 객체를 만들어서 복사해 집어넣는 것이다
+- 전역 공간이나 다른 클래스 같은 외부에서 생성된 Actor를 Level의 관리 시스템(vector)로 등록시키는 역할을 한다
