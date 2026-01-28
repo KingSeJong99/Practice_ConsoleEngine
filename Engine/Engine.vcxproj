@@ -104,13 +104,19 @@ xcopy $(OutDir)\Engine.lib $(SolutionDir)\Library\Engine\$(Platform)\$(Configura
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
     <ClInclude Include="Common\Common.h" />
+    <ClInclude Include="Common\RTTI.h" />
     <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Level\Level.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Actor\Actor1차.txt" />
+    <Text Include="Common\Common 1차.txt" />
+    <Text Include="Core\Input 1차.txt" />
     <Text Include="Engine\Engine2차.txt" />
     <Text Include="Engine\Engine1차.txt" />
+    <Text Include="Engine\Engine3차.txt" />
+    <Text Include="Level\Level1차.txt" />
     <Text Include="메모용.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

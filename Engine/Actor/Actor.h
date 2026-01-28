@@ -1,11 +1,14 @@
 #pragma once
 
-#include"common/Common.h"
+#include"common/RTTI.h"
 
 namespace Mint
 {
-	class MINT_API Actor
+	class MINT_API Actor : public RTTI
 	{
+		// RTTI 코드 추가
+		RTTI_DECLARATIONS(Actor, RTTI)
+
 	public:
 		Actor();
 		virtual ~Actor();
