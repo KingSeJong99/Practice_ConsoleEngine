@@ -112,6 +112,7 @@ xcopy $(OutDir)\Engine.lib $(SolutionDir)\Library\Engine\$(Platform)\$(Configura
   <ItemGroup>
     <Text Include="Actor\Actor1차.txt" />
     <Text Include="Common\Common 1차.txt" />
+    <Text Include="Common\RTTI.txt" />
     <Text Include="Core\Input 1차.txt" />
     <Text Include="Engine\Engine2차.txt" />
     <Text Include="Engine\Engine1차.txt" />

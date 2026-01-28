@@ -57,5 +57,6 @@
     <Text Include="Actor\Actor1차.txt" />
     <Text Include="Level\Level1차.txt" />
     <Text Include="Common\Common 1차.txt" />
+    <Text Include="Common\RTTI.txt" />
   </ItemGroup>
 </Project>
