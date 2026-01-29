@@ -15,6 +15,19 @@ namespace Mint
 
 		// 입력 관리자 생성
 		input = new Input();
+
+		// 설정 파일 로드
+		LoadSetting();
+
+		// 커서를 꺼버린다
+		CONSOLE_CURSOR_INFO info = {};
+		SetConsoleCursorInfo(
+			GetStdHandle(STD_OUTPUT_HANDLE), &info);
+
+		info.bVisible = false;
+		SetConsoleCursorInfo(
+			GetStdHandle(STD_OUTPUT_HANDLE), &info);
+
 	}
 
 	Engine::~Engine()
@@ -53,8 +66,11 @@ namespace Mint
 		previousTime = currentTime;
 
 		// 기준 프레임(단위를 초로)
-		float targetFrameRate = 15.0f;
-		float oneFrameTime = 1.0f / targetFrameRate;
+		// float targetFrameRate = 15.0f;
+
+		setting.framerate
+			= setting.framerate == 0.0f ? 60.f : setting.framerate;
+		float oneFrameTime = 1.0f / setting.framerate;
 
 		// 엔진 루프(게임루프)
 		while (!isQuit)
@@ -90,6 +106,17 @@ namespace Mint
 
 		// TODO: 정리 작업 (언젠가)
 		std::cout << "엔진이 죽고 말았다....\n";
+
+		// 꺼진 커서를 킨다
+		CONSOLE_CURSOR_INFO info = {};
+		SetConsoleCursorInfo(
+			GetStdHandle(STD_OUTPUT_HANDLE), &info);
+
+		info.bVisible = true;
+		SetConsoleCursorInfo(
+			GetStdHandle(STD_OUTPUT_HANDLE), &info);
+
+
 	}
 	void Engine::QuitEngine()
 	{
@@ -121,6 +148,33 @@ namespace Mint
 			__debugbreak;
 		}
 		return *instance;
+	}
+
+	void Engine::LoadSetting()
+	{
+		FILE* file = nullptr;
+		fopen_s(&file, "../Config/Setting.txt", "rt");
+		
+		//
+		char buffer[2048] = {};
+
+		// 파일에서 읽기.
+		size_t readSize = 
+			fread(buffer, sizeof(char), 2048, file);
+
+		// 문자열 포맷 활용해서 데이터 추출하기
+		sscanf_s(buffer, "framerate = %f", &setting.framerate);
+
+		// 파일을 찾지 못했을 때 예외처리하기
+		if (!file)
+		{
+			std::cout << "Failed to open engine setting file.\n";
+			__debugbreak();
+			return;
+		}
+
+		// 파일을 닫는다
+		fclose(file);
 	}
 
 	void Engine::BeginPlay()

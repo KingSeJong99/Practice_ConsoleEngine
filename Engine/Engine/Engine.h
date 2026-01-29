@@ -9,7 +9,12 @@ namespace Mint
 	// Main game engine class.
 	class MINT_API Engine
 	{
-		
+		// 엔진 설정 구조체
+		struct EngineSetting
+		{
+			// 프레임 속도 지정
+			float framerate = 0.0f;
+		};
 
 	public:
 		Engine();
@@ -30,6 +35,9 @@ namespace Mint
 		static Engine& Get();
 
 	private:
+		// 설정 파일 로드 함수
+		void LoadSetting();
+
 		// 게임 플레이 시작함수
 		// Unreal에서는 BeginPlay, Unity에서는 Start/Awake 이다.
 		void BeginPlay();
@@ -42,6 +50,9 @@ namespace Mint
 
 		// 엔진 종료 플래그
 		bool isQuit = false;
+
+		// 엔진 설정 값
+		EngineSetting setting;
 
 		// 입력 관리자
 		Input* input = nullptr;
