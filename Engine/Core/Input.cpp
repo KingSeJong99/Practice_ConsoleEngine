@@ -39,7 +39,7 @@ namespace Mint
 		// 엔진은 이미 초기화가 완료된 상태이다.
 		if (!instance)
 		{
-			std::cout << "Error: input:Get(). instance is null\n";
+			std::cout << "Error: input::Get(). instance is null\n";
 
 			// 디버그 모드에서만 동작하는 명령어로, 자동으로 중단점이 걸린다 !!
 			__debugbreak();
@@ -47,9 +47,9 @@ namespace Mint
 
 		// Lazy-Pattern from effective C++
 		// 생성을 초기에 하지 아지 않고 필요시에 한다!
-		static Input instance;
+		// static Input instance;
 
-		return instance;
+		return *instance;
 	}
 
 	void Input::ProcessInput()
@@ -58,7 +58,7 @@ namespace Mint
 		// (중요)운영체제가 제공하는 기능을 사용할 수 밖에 없다 !!
 		for (int ix = 0; ix < 255; ++ix)
 		{
-			keyStates[ix].wasKeyDown
+			keyStates[ix].isKeyDown
 				= (GetAsyncKeyState(ix) & 0x8000) > 0 ? true : false;
 		}
 	}
