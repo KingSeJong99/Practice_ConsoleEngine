@@ -26,8 +26,6 @@ namespace Mint
 		// 엔진 종료 함수
 		void QuitEngine();
 
-		
-
 		// 새 레벨을 추가(설정)하는 함수
 		void SetNewLevel(class Level* newLevel);
 
@@ -35,6 +33,10 @@ namespace Mint
 		static Engine& Get();
 
 	private:
+
+		// 정리 함수
+		void Shutdown();
+
 		// 설정 파일 로드 함수
 		void LoadSetting();
 

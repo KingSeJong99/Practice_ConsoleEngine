@@ -104,12 +104,15 @@ xcopy $(OutDir)\Engine.lib $(SolutionDir)\Library\Engine\$(Platform)\$(Configura
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
+    <ClInclude Include="Core\Renderer.h" />
+    <ClInclude Include="Math\Color.h" />
     <ClInclude Include="Common\Common.h" />
     <ClInclude Include="Common\RTTI.h" />
     <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Level\Level.h" />
     <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Actor\Actor1차.txt" />

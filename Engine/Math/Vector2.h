@@ -1,6 +1,7 @@
 #pragma once
 
 #include"Common/common.h"
+#include<Windows.h>
 
 namespace Mint
 {
@@ -19,6 +20,9 @@ namespace Mint
 
 		bool operator==(const Vector2& other) const;
 		bool operator!=(const Vector2& other) const;
+
+		// 형변환 연산자 오버로딩
+		operator COORD() const;
 
 		// 벡터의 기본 값
 		static Vector2 Zero;

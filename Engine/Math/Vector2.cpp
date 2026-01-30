@@ -61,4 +61,12 @@ namespace Mint
 	{
 		return !(*this == other);
 	}
+	Vector2::operator COORD() const
+	{
+		COORD coord = {};
+		coord.X = static_cast<short>(x);
+		coord.Y = static_cast<short>(y);
+
+		return coord;
+	}
 }

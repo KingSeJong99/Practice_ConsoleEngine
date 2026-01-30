@@ -1,12 +1,12 @@
 #pragma once
 #include"Actor/Actor.h"
 
-class TestActor : public Mint::Actor
+class Player : public Mint::Actor
 {
-	RTTI_DECLARATIONS(TestActor, Actor)
+	RTTI_DECLARATIONS(Player, Actor)
 
 public:
-	TestActor();
+	Player();
 
 	// public을 protected로 바꿔야했으나 놓쳐서 이제 바꿈
 protected:

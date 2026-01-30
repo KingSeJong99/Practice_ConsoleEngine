@@ -1,7 +1,7 @@
 #include"Engine.h"
 #include"Level/Level.h"
 #include"Core/Input.h"
-
+#include"Util/Util.h"
 #include<iostream>
 #include<Windows.h>
 
@@ -19,15 +19,8 @@ namespace Mint
 		// 설정 파일 로드
 		LoadSetting();
 
-		// 커서를 꺼버린다
-		CONSOLE_CURSOR_INFO info = {};
-		SetConsoleCursorInfo(
-			GetStdHandle(STD_OUTPUT_HANDLE), &info);
-
-		info.bVisible = false;
-		SetConsoleCursorInfo(
-			GetStdHandle(STD_OUTPUT_HANDLE), &info);
-
+		// 커서를 끈다
+		Util::TurnOffCursor();
 	}
 
 	Engine::~Engine()
@@ -101,23 +94,19 @@ namespace Mint
 				previousTime = currentTime;
 
 				input->SavePreviousInputStates();
+
+				// 레벨에 요청된 추가 및 제거를 처리한다
+				if (mainLevel)
+				{
+					mainLevel->ProcessAddAndDestroyActors();
+				}
 			}
 		}
 
-		// TODO: 정리 작업 (언젠가)
-		std::cout << "엔진이 죽고 말았다....\n";
-
-		// 꺼진 커서를 킨다
-		CONSOLE_CURSOR_INFO info = {};
-		SetConsoleCursorInfo(
-			GetStdHandle(STD_OUTPUT_HANDLE), &info);
-
-		info.bVisible = true;
-		SetConsoleCursorInfo(
-			GetStdHandle(STD_OUTPUT_HANDLE), &info);
-
-
+		// 정리
+		Shutdown();
 	}
+
 	void Engine::QuitEngine()
 	{
 		isQuit = true;
@@ -150,21 +139,21 @@ namespace Mint
 		return *instance;
 	}
 
+	void Engine::Shutdown()
+	{
+		// 정리 작업
+		std::cout << "엔진이 죽고 말았다....\n";
+
+		// 꺼진 커서를 킨다
+		Util::TurnOnCursor();
+	}
+
 	void Engine::LoadSetting()
 	{
+		// 엔진을 설정하는 파일 열기
 		FILE* file = nullptr;
 		fopen_s(&file, "../Config/Setting.txt", "rt");
 		
-		//
-		char buffer[2048] = {};
-
-		// 파일에서 읽기.
-		size_t readSize = 
-			fread(buffer, sizeof(char), 2048, file);
-
-		// 문자열 포맷 활용해서 데이터 추출하기
-		sscanf_s(buffer, "framerate = %f", &setting.framerate);
-
 		// 파일을 찾지 못했을 때 예외처리하기
 		if (!file)
 		{
@@ -172,6 +161,15 @@ namespace Mint
 			__debugbreak();
 			return;
 		}
+
+		char buffer[2048] = {};
+		
+		// 파일에서 읽기.
+		size_t readSize = 
+			fread(buffer, sizeof(char), 2048, file);
+		
+		// 문자열 포맷 활용해서 데이터 추출하기
+		sscanf_s(buffer, "framerate = %f", &setting.framerate);
 
 		// 파일을 닫는다
 		fclose(file);
@@ -204,6 +202,7 @@ namespace Mint
 
 		mainLevel->Tick(deltaTime);
 	}
+
 	void Engine::Draw()
 	{
 		if (!mainLevel)
