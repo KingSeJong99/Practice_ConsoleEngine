@@ -73,5 +73,8 @@
     <Text Include="Level\Level1차.txt" />
     <Text Include="Common\Common 1차.txt" />
     <Text Include="Common\RTTI.txt" />
+    <Text Include="Actor\Actor2차.txt" />
+    <Text Include="Math\Vector2 1차.txt" />
+    <Text Include="Engine\Engine4차.txt" />
   </ItemGroup>
 </Project>
