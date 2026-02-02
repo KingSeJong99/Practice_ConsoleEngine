@@ -18,7 +18,7 @@ namespace Mint
 
 	public:
 		Engine();
-		~Engine();
+		virtual ~Engine();
 
 		// 엔진 루프(게임 루프)
 		void Run();
@@ -32,7 +32,7 @@ namespace Mint
 		// 전역변수 접근 함수
 		static Engine& Get();
 
-	private:
+	protected:
 
 		// 정리 함수
 		void Shutdown();

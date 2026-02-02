@@ -16,4 +16,6 @@ namespace Mint
 		Blue = FOREGROUND_BLUE,
 		White = Blue | Green | Red, 
 	};
+
+
 }

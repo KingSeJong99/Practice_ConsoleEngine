@@ -19,5 +19,4 @@ LoadSetting 함수(파싱)
 CONSOLE_CURSOR_INFO? bVisible? 등의 정체..
 - bool 타입으로 false면 커서가 사라지고, true면 커서가 나타난다
 - dwSize는 커서의 두께를 의미한다
-- SetConsoleCursorInfo 호출시 GetConsoleCursoInfo로 현재 정보를 받아온 후 bVisible만 바꿔야한다
 
