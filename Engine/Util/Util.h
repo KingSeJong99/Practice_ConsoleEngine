@@ -51,7 +51,7 @@ namespace Util
 	// 커서 켜기
 	inline void TurnOnCursor()
 	{
-		// 커서를 꺼버린다
+		// 꺼진 커서를 다시 킨다 
 		CONSOLE_CURSOR_INFO info = {};
 		GetConsoleCursorInfo(
 			GetStdHandle(STD_OUTPUT_HANDLE), &info);

@@ -1,0 +1,12 @@
+Util 클래스
+- Util 클래스는 Console 에서 이제 본격적으로 Draw(Rendering)을 들어가게된 현재 시점에서 자잘한 역할을 한다.
+
+CONSOLE_CURSOR_INFO 옵션
+- ConsoleCursorInfo함수의 접두사로 Get, Set을 붙여 콘솔의 커서를 조절할 수 있다.
+- GetConsoleCursorInfo 함수로 CursorInfo를 받아올 수 있고, 이 받아온 값을 변경하여 SetConsoleCursurInfo 함수를 통해 적용할 수 있다
+
+SetConsoleTextColor
+- Color 클래스에서 설정한 enum class을 SetConsoleTextAttribute 함수로 색상을 지정할 수 있다, 단, Windows API로 인해 표현 가능한 색상은 8가지로 몹시 제한적이다
+
+SetConsolePosition
+- SetConsoleCursorPosition()함수를 기본으로 동작하여 Vector2 클래스에 추가된 COORD 좌표를 적용하는 함수이다

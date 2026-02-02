@@ -1,0 +1,4 @@
+Vector2 클래스
+- 본격적으로 Console에서 Draw(Rendering)을 하기 위해 Windows.h을 사용하게 되었다
+- 기존의 사용자 정의 Vector(좌표)에서 COORD() 형변환 연산자만 추가되었다
+- int로 정의되었던 Vector2의 멤버 변수 x와 y를 short로 static_cast를 진행하여 coord.X와 Y에 대입한다
