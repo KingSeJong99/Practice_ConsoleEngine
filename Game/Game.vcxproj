@@ -184,6 +184,9 @@
     <ClInclude Include="Level\MenuLevel.h" />
     <ClInclude Include="Level\SokobanLevel.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Actor\Actor 하위 클래스.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

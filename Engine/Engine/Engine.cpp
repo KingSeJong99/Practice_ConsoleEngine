@@ -2,6 +2,7 @@
 #include"Level/Level.h"
 #include"Core/Input.h"
 #include"Util/Util.h"
+#include"Render/Renderer.h"
 #include<iostream>
 #include<Windows.h>
 
@@ -18,6 +19,9 @@ namespace Mint
 
 		// 설정 파일 로드
 		LoadSetting();
+
+		// 렌더러 객체 생성하기
+		renderer = new Renderer(Vector2(setting.width, setting.height));
 
 		// 커서를 끈다
 		Util::TurnOffCursor();
@@ -38,6 +42,9 @@ namespace Mint
 			delete input;
 			input = nullptr;
 		}
+
+		// 렌더러 객체 제거하기
+		SafeDelete(renderer);
 	}
 
 	void Engine::Run()
@@ -131,7 +138,7 @@ namespace Mint
 	Engine& Engine::Get() 
 	{
 		// 예외처리
-		if (instance)
+		if (!instance)
 		{
 			std::cout << "Error: Engine::Get(). instance is null\n";
 			__debugbreak;
@@ -158,6 +165,7 @@ namespace Mint
 		if (!file)
 		{
 			std::cout << "Failed to open engine setting file.\n";
+			std::cin.get();
 			__debugbreak();
 			return;
 		}
@@ -168,9 +176,41 @@ namespace Mint
 		size_t readSize = 
 			fread(buffer, sizeof(char), 2048, file);
 		
-		// 문자열 포맷 활용해서 데이터 추출하기
-		sscanf_s(buffer, "framerate = %f", &setting.framerate);
+		// 문자열 자르기 (파싱)
+		// 첫 번째 문자열을 분리할 때는 첫 파라미터를 전달한다
+		char* context = nullptr;
+		char* token = nullptr;
+		token = strtok_s(buffer, "\n", &context);
 
+		// 반복해서 자르기
+		while (token)
+		{
+			// 설정 텍스트에서 파라미터 이름만 읽기
+			char header[10] = {};
+			// 문자열 읽기 함수 활용하기
+			// 이때 "%s"로 읽으면 "스페이스가 있으면 거기까지 읽음"
+			sscanf_s(token, "%s", header, 10);
+
+			// 문자열 비교 및 값 읽기
+			if (strcmp(header, "framerate") == 0)
+			{
+				sscanf_s(token, "framerate = %f", &setting.framerate);
+			}
+			else if (strcmp(header, "width") == 0)
+			{
+				sscanf_s(token, "width = %d", &setting.width);
+			}
+			else if (strcmp(header, "height") == 0)
+			{
+				sscanf_s(token, "height = %d", &setting.height);
+			}
+
+			// 개행 문자로 문자열 분리
+			token = strtok_s(nullptr, "\n", &context);
+		}
+
+		// 문자열 포맷 활용해서 데이터 추출하기
+		// sscanf_s(buffer, "framerate = %f", &setting.framerate);
 		// 파일을 닫는다
 		fclose(file);
 	}
@@ -205,12 +245,17 @@ namespace Mint
 
 	void Engine::Draw()
 	{
+		// 레벨에 이벤트 흘리기
+		// 예외처리하기
 		if (!mainLevel)
 		{
 			std::cout << "Error: Engine::Draw(). mainLevel is empty\n";
 			return;
 		}
-
+		// 레벨의 모든 액터가 렌더 데이터를 제출한다
 		mainLevel->Draw();
+
+		// 렌더러에 그리기 명령을 전달한다
+		renderer->Draw();
 	}
 }

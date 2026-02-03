@@ -19,7 +19,6 @@ struct MenuItem
 		size_t length = strlen(text) + 1;
 		this->text = new char[length];
 		strcpy_s(this->text, length, text);
-	
 	}
 
 	~MenuItem()

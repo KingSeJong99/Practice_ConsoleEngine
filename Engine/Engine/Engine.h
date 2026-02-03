@@ -1,10 +1,12 @@
 #pragma once
 
-#include"common/Common.h"
+#include"Common/Common.h"
 namespace Mint
 {
 	// 전방 선언!!
 	class Input;
+
+	class Renderer;
 
 	// Main game engine class.
 	class MINT_API Engine
@@ -14,6 +16,12 @@ namespace Mint
 		{
 			// 프레임 속도 지정
 			float framerate = 0.0f;
+
+			// 화면 너비
+			int width = 0;
+
+			// 화면 높이
+			int height = 0;
 		};
 
 	public:
@@ -58,6 +66,9 @@ namespace Mint
 
 		// 입력 관리자
 		Input* input = nullptr;
+
+		// 렌더러 객체
+		Renderer* renderer = nullptr;
 
 		// 메인 레벨
 		class Level* mainLevel = nullptr;

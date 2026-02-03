@@ -2,6 +2,7 @@
 #include"Game/Game.h"
 #include"Core/Input.h"
 #include"Util/Util.h"
+#include"Render/Renderer.h"
 #include<iostream>
 
 MenuLevel::MenuLevel()
@@ -62,6 +63,7 @@ void MenuLevel::Tick(float deltaTime)
 
 	if (Input::Get().GetKeyDown(VK_RETURN))
 	{
+		// 메뉴 아이템이 저장한 함수 포인터를 호출한다
 		items[currentIndex]->onSelected();
 	}
 
@@ -77,23 +79,31 @@ void MenuLevel::Tick(float deltaTime)
 
 void MenuLevel::Draw()
 {
-	// 메뉴 제목 출력하기
-	Util::SetConsolePosition(Vector2::Zero);
-	Util::SetConsoleTextColor(Color::White);
+	// // 메뉴 제목 출력하기
+	// Util::SetConsolePosition(Vector2::Zero);
+	// Util::SetConsoleTextColor(Color::White);
+	// 
+	// // 텍스트 출력
+	// std::cout << "Sokoban Game\n\n";
 
-	// 텍스트 출력
-	std::cout << "Sokoban Game\n\n";
+	Renderer::Get().Submit("Sokoban Game", Vector2::Zero);
 
 	// 메뉴 아이템 출력하기
 	for (int ix = 0; ix < static_cast<int>(items.size()); ++ix)
 	{
+		// 아이템의 색상을 확인한다
 		Color textColor =
 			(ix == currentIndex) ? selectedColor : unselectedColor;
 
-		// 색상 설정하기
-		Util::SetConsoleTextColor(textColor);
+		Renderer::Get().Submit(
+			items[ix]->text,
+			Vector2(0, 2 + ix),
+			textColor);
 
-		// 텍스트 출력하기
-		std::cout << items[ix]->text << "\n";
+		// // 색상 설정하기
+		// Util::SetConsoleTextColor(textColor);
+		// 
+		// // 텍스트 출력하기
+		// std::cout << items[ix]->text << "\n";
 	}
 }

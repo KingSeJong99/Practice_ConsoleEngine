@@ -72,4 +72,7 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Actor\Actor 하위 클래스.txt" />
+  </ItemGroup>
 </Project>

@@ -82,6 +82,17 @@ namespace Mint
 
 			actor->Draw();
 		}
+
+		// 액터를 순회하며 Draw 함수 호출하기
+		for (Actor* const actor : actors)
+		{
+			if (!actor->IsActive())
+			{
+				continue;
+			}
+
+			actor->Draw();
+		}
 	}
 
 	void Level::AddNewActor(Actor* newActor)

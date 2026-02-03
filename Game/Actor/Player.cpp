@@ -15,7 +15,7 @@
 using namespace Mint;
 
 Player::Player(const Vector2& position)
-	:super('P', position, Color::Red)
+	:super("P", position, Color::Red)
 {
 	// 그리기 우선 순위(값이 크면 우선순위가 높다)
 	sortingOrder = 10;

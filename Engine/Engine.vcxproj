@@ -101,10 +101,12 @@ xcopy $(OutDir)\Engine.lib $(SolutionDir)\Library\Engine\$(Platform)\$(Configura
     <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Level\Level.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="Render\Renderer.cpp" />
+    <ClCompile Include="Render\ScreenBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
-    <ClInclude Include="Core\Renderer.h" />
+    <ClInclude Include="Render\Renderer.h" />
     <ClInclude Include="Math\Color.h" />
     <ClInclude Include="Common\Common.h" />
     <ClInclude Include="Common\RTTI.h" />
@@ -112,20 +114,28 @@ xcopy $(OutDir)\Engine.lib $(SolutionDir)\Library\Engine\$(Platform)\$(Configura
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Level\Level.h" />
     <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Render\ScreenBuffer.h" />
     <ClInclude Include="Util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Actor\Actor1차.txt" />
     <Text Include="Actor\Actor2차.txt" />
+    <Text Include="Actor\Actor3차.txt" />
     <Text Include="Common\Common 1차.txt" />
     <Text Include="Common\RTTI.txt" />
     <Text Include="Core\Input 1차.txt" />
+    <Text Include="Render\Renderer 1차.txt" />
     <Text Include="Engine\Engine2차.txt" />
     <Text Include="Engine\Engine1차.txt" />
     <Text Include="Engine\Engine3차.txt" />
     <Text Include="Engine\Engine4차.txt" />
+    <Text Include="Engine\Engine5차.txt" />
     <Text Include="Level\Level1차.txt" />
+    <Text Include="Level\Level2차.txt" />
+    <Text Include="Math\Color 1차.txt" />
     <Text Include="Math\Vector2 1차.txt" />
+    <Text Include="Math\Vector2 2차.txt" />
+    <Text Include="Util\Util 1차.txt" />
     <Text Include="메모용.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

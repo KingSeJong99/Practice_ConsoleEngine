@@ -101,11 +101,11 @@ void SokobanLevel::LoadMap(const char* filename)
 		}
 
 		// 캐릭터 읽기
-		char mapChracter = data[index];
+		char mapCharacter = data[index];
 		++index;
 
 		// 개행 문자 처리하기
-		if (mapChracter == '\n')
+		if (mapCharacter == '\n')
 		{
 			// y 좌표를 하나 늘리고 x 좌표를 초기화한다
 			++position.y;
@@ -120,7 +120,7 @@ void SokobanLevel::LoadMap(const char* filename)
 		* b : 박스(box)
 		* t : 타겟(target)
 		*/
-		switch (mapChracter)
+		switch (mapCharacter)
 		{
 		case '#':
 		case '1':
