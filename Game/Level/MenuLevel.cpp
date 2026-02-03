@@ -62,7 +62,7 @@ void MenuLevel::Tick(float deltaTime)
 
 	if (Input::Get().GetKeyDown(VK_RETURN))
 	{
-		items[currentIndex]->onSelected()
+		items[currentIndex]->onSelected();
 	}
 
 	if (Input::Get().GetKeyDown(VK_ESCAPE))

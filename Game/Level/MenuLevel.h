@@ -35,7 +35,7 @@ struct MenuItem
 	char* text = nullptr;
 
 	// 메뉴가 선택됐을 때 실행될 로직
-	OnSelected OnSelected = nullptr;
+	OnSelected onSelected = nullptr;
 };
 
 class MenuLevel : public Level
