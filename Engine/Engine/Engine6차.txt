@@ -1,0 +1,2 @@
+Engine 클래스
+- Engine 클래스의 소멸자가 virtual이 지정되고, private 범위 지정이 protected로 확장되었다
