@@ -186,6 +186,11 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Actor\Actor 하위 클래스1차.txt" />
+    <Text Include="Actor\Actor 하위 클래스2차.txt" />
+    <Text Include="Game\Game1차.txt" />
+    <Text Include="Interface\ICanPlayerMove1차.txt" />
+    <Text Include="Level\MenuLevel1차.txt" />
+    <Text Include="Level\SokobanLevel1차.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

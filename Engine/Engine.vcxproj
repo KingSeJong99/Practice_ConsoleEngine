@@ -121,9 +121,15 @@ xcopy $(OutDir)\Engine.lib $(SolutionDir)\Library\Engine\$(Platform)\$(Configura
     <Text Include="Actor\Actor1차.txt" />
     <Text Include="Actor\Actor2차.txt" />
     <Text Include="Actor\Actor3차.txt" />
+    <Text Include="Actor\Actor4차.txt" />
     <Text Include="Common\Common 1차.txt" />
     <Text Include="Common\RTTI.txt" />
     <Text Include="Core\Input 1차.txt" />
+    <Text Include="Engine\Engine6차.txt" />
+    <Text Include="Engine\Engine7차.txt" />
+    <Text Include="Level\Level3차.txt" />
+    <Text Include="Level\Level4차.txt" />
+    <Text Include="Level\Level5차.txt" />
     <Text Include="Render\Renderer 1차.txt" />
     <Text Include="Engine\Engine2차.txt" />
     <Text Include="Engine\Engine1차.txt" />
@@ -135,7 +141,10 @@ xcopy $(OutDir)\Engine.lib $(SolutionDir)\Library\Engine\$(Platform)\$(Configura
     <Text Include="Math\Color 1차.txt" />
     <Text Include="Math\Vector2 1차.txt" />
     <Text Include="Math\Vector2 2차.txt" />
+    <Text Include="Render\Renderer2차.txt" />
+    <Text Include="Render\ScreenBuffer1차.txt" />
     <Text Include="Util\Util 1차.txt" />
+    <Text Include="Util\Util2차.txt" />
     <Text Include="메모용.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -92,5 +92,14 @@
     <Text Include="Math\Color 1차.txt" />
     <Text Include="Math\Vector2 2차.txt" />
     <Text Include="Util\Util 1차.txt" />
+    <Text Include="Actor\Actor4차.txt" />
+    <Text Include="Engine\Engine6차.txt" />
+    <Text Include="Engine\Engine7차.txt" />
+    <Text Include="Level\Level3차.txt" />
+    <Text Include="Level\Level4차.txt" />
+    <Text Include="Level\Level5차.txt" />
+    <Text Include="Render\Renderer2차.txt" />
+    <Text Include="Render\ScreenBuffer1차.txt" />
+    <Text Include="Util\Util2차.txt" />
   </ItemGroup>
 </Project>
